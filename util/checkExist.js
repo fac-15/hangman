@@ -6,7 +6,8 @@ export const fillArray = (value, len) => {
   return arr;
 };
 
-export const check = (word, letter, previousLetter) => {
+export const check = (word, letter, emptyArray) => {
+  console.log("insisde the ceheck funciton", word, letter, emptyArray);
   const array = word.split("");
 
   const indexes = [];
@@ -18,8 +19,8 @@ export const check = (word, letter, previousLetter) => {
   }
 
   for (var j = 0; j < indexes.length; j++) {
-    previousLetter[indexes[j]] = letter;
+    emptyArray[indexes[j]] = letter;
   }
 
-  return previousLetter.join(" ");
+  return emptyArray;
 };
