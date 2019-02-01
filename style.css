@@ -1,0 +1,23 @@
+.header {
+  text-align: center;
+}
+
+.main_container {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    flex-wrap: wrap;
+}
+
+
+
+
+img.image--img {
+  height: 19rem;
+}
+
+
+.inputSection {
+    padding-top: 5rem;
+    padding-left: 4rem;
+}
