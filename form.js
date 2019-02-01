@@ -12,15 +12,15 @@ export default class Form extends React.Component {
   state = {
     randomWordGenerator: null,
     letterInput: "",
-    displayArray: [],
-    lives: 3
+    displayArray: []
   };
 
   createRandomWord = () => {
     const randomWord = random();
     this.setState({
       randomWordGenerator: randomWord,
-      displayArray: fillArray(" _ ", randomWord.length)
+      displayArray: fillArray(" _ ", randomWord.length),
+      lives: 3
     });
   };
 
