@@ -32,6 +32,8 @@ export default class Form extends React.Component {
   };
 
   checkExist = () => {
+    localStorage.setItem("previous", JSON.stringify(this.state.displayArray));
+
     this.setState({
       displayArray: check(
         this.state.randomWordGenerator,
@@ -101,6 +103,15 @@ export default class Form extends React.Component {
           </div>
           <div className="inputSection">
             <button onClick={this.createRandomWord}>Start !</button>
+            <br />
+            {this.state.randomWordGenerator !== null && (
+              <h3>Start guessing!</h3>
+            )}
+            {this.state.displayArray.map(el => (
+              <span>{el}</span>
+            ))}
+            <br />
+            <br />
             <form>
               <label htmlFor="letter">Enter Letter:</label>
               <input
@@ -114,13 +125,7 @@ export default class Form extends React.Component {
                 onChange={this.handleChange}
               />
             </form>
-            <button onClick={this.checkExist}>Check if exist</button>
-            {this.state.randomWordGenerator !== null && (
-              <h3>Start guessing!</h3>
-            )}
-            {this.state.displayArray.map(el => (
-              <span>{el}</span>
-            ))}
+            <button onClick={this.checkExist}>Check the letter</button>
           </div>
         </div>
       </React.Fragment>
