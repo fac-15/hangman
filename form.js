@@ -10,7 +10,7 @@ import { check, fillArray } from './util/checkExist';
 
 export default class Form extends React.Component {
     state = {
-        randomWordGenerator: '',
+        randomWordGenerator: null,
         letterInput: '',
         matchFound: '',
         displayArray: [],
@@ -33,6 +33,7 @@ export default class Form extends React.Component {
     handleChange = event => {
         const value = event.target.value;
         console.log('THIS IS THE INPUT LETTER', value);
+        console.log(this.state.randomWordGenerator);
 
         this.setState({ letterInput: value });
     };
@@ -72,9 +73,13 @@ export default class Form extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.createRandomWord}>Click Me!</button>
-                <h3>{this.state.randomWordGenerator} </h3>
-                <button onClick={this.creatEmtryArray}>Emtry array!</button>
+                <button onClick={this.createRandomWord}>Start !</button>
+                {this.state.randomWordGenerator !== null && (
+                    <h3>The word is generated!</h3>
+                )}
+                {/* <h3>{this.state.randomWordGenerator} </h3> */}
+
+                <button onClick={this.creatEmtryArray}>See length !</button>
                 {this.state.displayArray}
                 <form>
                     <label htmlFor="letter">Enter Letter:</label>
@@ -89,7 +94,7 @@ export default class Form extends React.Component {
                         onChange={this.handleChange}
                     />
                 </form>
-                <button onClick={this.checkExist}>Check is exist</button>
+                <button onClick={this.checkExist}>Check if exist</button>
                 {this.state.displayArray.map(el => (
                     <span>{el}</span>
                 ))}
