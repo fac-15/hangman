@@ -7,7 +7,7 @@ export const fillArray = (value, len) => {
 };
 
 export const check = (word, letter, emptyArray) => {
-  console.log("insisde the ceheck funciton", word, letter, emptyArray);
+  // console.log("insisde the ceheck funciton", word, letter, emptyArray);
   const array = word.split("");
 
   const indexes = [];
