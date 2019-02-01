@@ -28,6 +28,8 @@ export default class Form extends React.Component {
     });
   };
   handleChange = event => {
+    event.preventDefault();
+
     const value = event.target.value;
     console.log("THIS IS THE INPUT LETTER", value);
     console.log(this.state.randomWordGenerator);
@@ -56,6 +58,7 @@ export default class Form extends React.Component {
         lives: this.state.lives - 1
       });
     }
+    this.setState({ letterInput: "" });
   };
 
   render() {
@@ -108,7 +111,7 @@ export default class Form extends React.Component {
             </form>
             <button onClick={this.checkExist}>Check if exist</button>
             {this.state.randomWordGenerator !== null && (
-              <h3>The word is generated!</h3>
+              <h3>{this.state.randomWordGenerator}</h3>
             )}
             {this.state.displayArray.map(el => (
               <span>{el}</span>
