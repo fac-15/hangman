@@ -32,42 +32,32 @@ export default class Form extends React.Component {
   };
 
   checkExist = () => {
+
     localStorage.setItem("previous", JSON.stringify(this.state.displayArray));
 
+    var s = this.state.letterInput;
     this.setState({
       displayArray: check(
         this.state.randomWordGenerator,
         this.state.letterInput,
         this.state.displayArray
       ),
+
       letterInput: ""
     });
 
-    let previousValue = localStorage.getItem("previous");
-    previousValue = JSON.parse(previousValue);
-    const currentValue = this.state.displayArray;
-    if (JSON.stringify(previousValue) == JSON.stringify(currentValue)) {
-      console.log("previous state: ", previousValue);
-      this.setState({ lives: this.state.lives - 1 });
-    }
-
-    // this.setState(prevState => {
-    //   if (prevState.displayArray == this.state.displayArray) {
-    //     console.log("reached");
-    //     console.log("what is the prevState", prevState.displayArray);
-    //     console.log("this is a current state", this.state.displayArray);
-    //     this.setState({
-    //       lives: this.state.lives - 1
-    //     });
-    //   }
-    // });
-
-    // this.setState(prevState => {
-    //   if (prevState.displayArray == this.state.displayArray) {
-    //     return { lives: this.state.lives - 1 };
-    //   }
-    // });
-    // console.log(this.state);
+  
+      var idx = this.state.randomWordGenerator.indexOf(s)
+      if(idx == -1){
+        console.log("correct");
+        this.setState({ lives: this.state.lives - 1 });
+      }
+      else{
+        this.setState({ answer: this.state.displayArray.join("").toString() });
+        console.log(this.state.answer);
+        }
+      
+    
   };
 
   render() {
@@ -78,8 +68,9 @@ export default class Form extends React.Component {
           <div className="images">
             {this.state.lives == 3 && (
               <div>
+                
                 <Image url={hangmanStand} />
-                <h2>You still have {this.state.lives} lives</h2>
+                <h2>You still have {this.state.lives} lives </h2>
               </div>
             )}
             {this.state.lives == 2 && (
@@ -100,6 +91,11 @@ export default class Form extends React.Component {
                 <h2>Game Over !</h2>
               </div>
             )}
+            { this.setState.randomWord!=null&&this.state.answer == this.state.randomWordGenerator &&(
+             <div>
+              <h2>Congratulations !! You win</h2>
+            </div>
+            )}
           </div>
           <div className="inputSection">
             <button onClick={this.createRandomWord}>Start !</button>
@@ -107,9 +103,7 @@ export default class Form extends React.Component {
             {this.state.randomWordGenerator !== null && (
               <h3>Start guessing!</h3>
             )}
-            {this.state.displayArray.map(el => (
-              <span>{el}</span>
-            ))}
+              <span>{this.state.displayArray}</span>
             <br />
             <br />
             <form>
